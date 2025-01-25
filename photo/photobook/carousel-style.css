@@ -1,0 +1,133 @@
+/* Loading Screen Overlay */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--light-1);
+  background-size: 100px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+#loading-screen span {
+  margin-left: 10px;
+}
+
+.page-counter span {
+  font-weight: bold;
+}
+
+.carousel {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 600px;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 1px var(--light-2);
+  background-color: var(
+    --light-2
+  ); /* Neutral background for better aesthetics */
+  border-radius: 0.375rem;
+  margin-bottom: 20px;
+}
+
+.carousel-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.page-spread {
+  display: flex;
+  gap: 0px;
+}
+
+.page-left,
+.page-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: var(--light-1);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.page-left img,
+.page-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Front and Back Cover Styling */
+.front-cover img,
+.back-cover img {
+  width: 100%;
+  max-width: 50%;
+  height: auto;
+  margin: auto;
+  border-radius: 8px;
+}
+
+/* Flickity Buttons */
+.flickity-button {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: #ffffff; /* White arrow color */
+  border: none; /* No border for a clean look */
+  border-radius: 50%; /* Circular buttons */
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.flickity-button:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+.flickity-button:disabled {
+  opacity: 0.5; /* Make disabled buttons less prominent */
+}
+
+.flickity-button-icon {
+  fill: #ffffff; /* Arrow icon color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carousel {
+    max-height: 400px;
+  }
+
+  .flickity-button {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .carousel {
+    max-height: 300px;
+    height: 100%;
+    width: 600px;
+  }
+
+  .flickity-button {
+    width: 30px;
+    height: 30px;
+  }
+}

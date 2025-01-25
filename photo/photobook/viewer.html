@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles/general-styles.css" />
+    <link rel="stylesheet" href="../../styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2.2.2/dist/flickity.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flickity@2.2.2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="carousel-style.css" />
+    <link rel="stylesheet" href="../../styles/mq/mqs-style.css" />
+    <script src="../../js/sidebar.js" defer></script>
+    <title>silent lung</title>
+  </head>
+
+  <body>
+    <div id="loading-screen">
+      <span>Cargando...</span>
+    </div>
+    <header class="navigation-container mb1">
+      <h1 class="navbar-title">silent lung</h1>
+      <a class="showSidebar" id="showSidebar" onclick="showSidebar()" href="#"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#373d3f"
+        >
+          <path
+            d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+          />
+        </svg>
+      </a>
+      <nav>
+        <ul class="navbar sidebar subtitle-text">
+          <li onclick="hideSidebar()" class="close-sidebar">
+            <a href="#"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#373d3f"
+              >
+                <path
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="../../index">Inicio</a>
+          </li>
+          <li>
+            <a href="../../photo/galerias.html">Fotos</a>
+          </li>
+          <li><a id="active" href="#">Fotolibro</a></li>
+          <li><a href="../../art/selector">Arte</a></li>
+          <li><a href="../../video/selector">Videos</a></li>
+          <li><a href="../../store/available">Tienda</a></li>
+          <li><a href="../../contact/form">Contacto</a></li>
+        </ul>
+        <ul class="navbar subtitle-text">
+          <li><a href="../../index">Inicio</a></li>
+          <li>
+            <a href="../../photo/galerias.html">Fotos</a>
+          </li>
+          <li><a class="active" href="#">Fotolibro</a></li>
+          <li><a href="../../art/selector">Arte</a></li>
+          <li><a href="../../video/selector">Videos</a></li>
+          <li><a href="../../store/available">Tienda</a></li>
+          <li><a href="../../contact/form">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="media-container light-1">
+        <div class="border-container pb2">
+          <h1 class="mb1">Sendas</h1>
+          <div class="carousel">
+            <!-- The front cover and initial pages will be loaded dynamically here -->
+          </div>
+          <div class="page-counter">
+            <span id="current-page">Portada</span>
+            <span id="total-pages"></span>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          const $carousel = $(".carousel");
+          let flickityInstance;
+          const totalPages = 120;
+          const pagesPerBatch = 10; // Load 10 pages at a time (5 spreads)
+          let currentLoadedPages = pagesPerBatch;
+
+          // Load the front cover first
+          $carousel.append(`
+          <div class="carousel-cell front-cover">
+            <img src="../../img/photobook/front_cover.jpg" alt="Front Cover">
+          </div>
+        `);
+
+          // Function to add a page spread to the carousel
+          function addPageSpread(index) {
+            const pageCell = `
+            <div class="carousel-cell">
+              <div class="page-spread">
+                <div class="page-left">
+                  <img src="../../img/photobook/page_${index}.jpg" alt="Page ${index}">
+                </div>
+                <div class="page-right">
+                  <img src="../../img/photobook/page_${
+                    index + 1
+                  }.jpg" alt="Page ${index + 1}">
+                </div>
+              </div>
+            </div>
+          `;
+            $carousel.append(pageCell);
+          }
+
+          // Load the first batch of pages (5 spreads, 10 pages)
+          for (let i = 0; i < pagesPerBatch; i += 2) {
+            addPageSpread(i);
+          }
+
+          // Initialize Flickity after the first pages are loaded
+          $carousel.imagesLoaded().then(function () {
+            flickityInstance = $carousel.flickity({
+              cellAlign: "center",
+              contain: true,
+              wrapAround: false,
+              autoPlay: false,
+              pageDots: false,
+              prevNextButtons: true,
+              dragThreshold: 1,
+            });
+
+            // Listen for Flickity change events
+            $carousel.on("change.flickity", function (event, index) {
+              var totalCells = $carousel.find(".carousel-cell").length;
+              console.log(index);
+
+              // Dynamically load more pages when the user is near the end of the carousel
+              if (index >= totalCells - 2 && currentLoadedPages < totalPages) {
+                console.log("jump");
+                setTimeout(function () {
+                  loadMorePages();
+                }, 500); // 300ms delay
+              }
+
+              // Update current page display
+              if (index === 0) {
+                $("#current-page").text("Portada");
+              } else if (index === totalPages / 2 + 1) {
+                $("#current-page").text("Contraportada");
+              } else {
+                const leftPage = index * 2 - 1;
+                const rightPage = leftPage + 1;
+                $("#current-page").text(
+                  `Páginas ${leftPage} - ${rightPage} de ${totalPages}`
+                );
+              }
+            });
+
+            $("#loading-screen").fadeOut(500);
+          });
+
+          // Function to load more pages in batches of 10
+          function loadMorePages() {
+            const start = currentLoadedPages;
+            const end = Math.min(
+              currentLoadedPages + pagesPerBatch,
+              totalPages
+            );
+            const newCells = [];
+            console.log(start);
+            // Add page spreads for each pair of pages
+            for (let i = start; i < end; i += 2) {
+              const pageCell = `
+              <div class="carousel-cell">
+                <div class="page-spread">
+                  <div class="page-left">
+                    <img src="../../img/photobook/page_${i}.jpg" alt="Page ${i}">
+                  </div>
+                  <div class="page-right">
+                    <img src="../../img/photobook/page_${
+                      i + 1
+                    }.jpg" alt="Page ${i + 1}">
+                  </div>
+                </div>
+              </div>
+            `;
+              newCells.push(pageCell);
+            }
+
+            // Append the new pages to the carousel
+            $(".carousel").flickity("append", $(newCells.join("")));
+
+            // Update the counter
+            currentLoadedPages += pagesPerBatch;
+
+            // Add the back cover after all pages are loaded
+            if (currentLoadedPages == totalPages) {
+              const backCoverCell = `
+              <div class="carousel-cell back-cover">
+                <img src="../../img/photobook/back_cover.jpg" alt="Back Cover">
+              </div>
+            `;
+              $(".carousel").flickity("append", $(backCoverCell));
+            }
+          }
+        });
+      </script>
+    </main>
+    <footer>&copy; silent lung, 2024</footer>
+  </body>
+</html>

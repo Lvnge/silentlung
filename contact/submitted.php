@@ -1,0 +1,134 @@
+<?php
+$name = $_POST['name'];
+$mailFrom = $_POST['mail-dir'];
+$message = $_POST['message'];
+
+$mailHeader = "From:" . $name . "<" . $mailFrom . ">\r\n";
+
+$recipient = "hi@silentlung.com";
+$subject = "New contact request";
+
+$customBody = '
+    <html> 
+        <head> 
+            <title>New contact request</title> 
+        </head>
+
+        <body> 
+            <h2> 
+                Contacto:  ' . $name . '  <br>
+                Mensaje: ' . $message . ' 
+            </h2> 
+        </body>
+    </html>
+';
+//para el envío en formato HTML 
+$headers = "MIME-Version: 1.0\r\n";
+$headers .= "Content-type: text/html; charset=UTF8\r\n";
+
+//dirección del remitente
+
+$headers .= "FROM: $name <$mailFrom>\r\n";
+
+mail($recipient, $subject, $customBody, $headers);
+
+
+
+echo '
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/general-styles.css" />
+    <link rel="stylesheet" href="../styles/mq/mqs-style.css" />
+
+    <script src="../js/sidebar.js" defer></script>
+    <title>silent lung</title>
+  </head>
+
+  <body>
+    <header class="navigation-container mb1">
+      <h1 class="navbar-title">silent lung</h1>
+      <a class="showSidebar" id="showSidebar" onclick="showSidebar()" href="#"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#373d3f"
+        >
+          <path
+            d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+          />
+        </svg>
+      </a>
+      <nav>
+        <ul class="navbar sidebar subtitle-text">
+          <li onclick="hideSidebar()" class="close-sidebar">
+            <a href="#"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#373d3f"
+              >
+                <path
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="../index">Inicio</a>
+          </li>
+          <li><a href="../photo/galerias">Fotos</a></li>
+          <li><a href="../photo/photobook/viewer">Fotolibro</a></li>
+          <li><a href="../art/selector">Arte</a></li>
+          <li><a href="../video/selector">Videos</a></li>
+          <li><a href="../store/available">Tienda</a></li>
+
+          <li>
+            <a id="active" class="active" href="../contact/form">Contacto</a>
+          </li>
+        </ul>
+        <ul class="navbar subtitle-text">
+          <li><a href="../index">Inicio</a></li>
+          <li><a href="../photo/galerias">Fotos</a></li>
+          <li><a href="../photo/photobook/viewer">Fotolibro</a></li>
+          <li><a href="../art/selector">Arte</a></li>
+          <li><a href="../video/selector">Videos</a></li>
+          <li><a href="../store/available">Tienda</a></li>
+
+          <li>
+            <a class="active" href="../contact/form">Contacto</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="media-container light-1">
+        <div class="border-container pb2">
+          <h2 class="title-text mb1">&iexcl;Gracias por contactarme&excl;</h2>
+          <button class="submitted" onclick="location.href=\'../index\'">
+            Regresar al inicio
+          </button>
+        </div>
+      </div>
+    </main>
+    <footer>&copy; silent lung, 2024</footer>
+  </body>
+</html>
+
+';

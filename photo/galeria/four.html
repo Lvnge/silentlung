@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles/style.css" />
+    <link rel="stylesheet" href="../../styles/general-styles.css" />
+    <link rel="stylesheet" href="../../styles/galeria/galeria-style.css" />
+    <link rel="stylesheet" href="../../styles/mq/mqs-style.css" />
+
+    <script src="../../js/sidebar.js" defer></script>
+    <script src="../../js/galeria.js" defer></script>
+    <title>silent lung</title>
+  </head>
+
+  <body>
+    <header class="navigation-container mb1">
+      <h1 class="navbar-title">silent lung</h1>
+      <a class="showSidebar" id="showSidebar" onclick="showSidebar()" href="#"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#373d3f"
+        >
+          <path
+            d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+          />
+        </svg>
+      </a>
+      <nav>
+        <ul class="navbar sidebar subtitle-text">
+          <li onclick="hideSidebar()" class="close-sidebar">
+            <a href="#"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#373d3f"
+              >
+                <path
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="../../index">Inicio</a>
+          </li>
+          <li>
+            <a id="active" href="../../photo/galerias">Fotos</a>
+          </li>
+          <li><a href="../../photo/photobook/viewer">Fotolibro</a></li>
+          <li><a href="../../art/selector">Arte</a></li>
+          <li>
+            <a href="../../video/selector">Videos</a>
+          </li>
+          <li>
+            <a href="../../store/available">Tienda</a>
+          </li>
+          <li>
+            <a href="../../contact/form">Contacto</a>
+          </li>
+        </ul>
+        <ul class="navbar subtitle-text">
+          <li><a href="../../index">Inicio</a></li>
+          <li>
+            <a class="active" href="../../photo/galerias">Fotos</a>
+          </li>
+          <li><a href="../../photo/photobook/viewer">Fotolibro</a></li>
+          <li><a href="../../art/selector">Arte</a></li>
+          <li>
+            <a href="../../video/selector">Videos</a>
+          </li>
+          <li>
+            <a href="../../store/available">Tienda</a>
+          </li>
+          <li>
+            <a href="../../contact/form">Contacto</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="media-container light-1">
+      <div class="border-container pb2">
+        <h2 class="title-text mb1">Animales</h2>
+
+        <div class="slider mb1">
+          <div class="slides">
+            <img src="../../img/galerias/four/photo (1).webp" alt="" />
+            <img src="../../img/galerias/four/photo (2).webp" alt="" />
+            <img src="../../img/galerias/four/photo (3).webp" alt="" />
+            <img src="../../img/galerias/four/photo (4).webp" alt="" />
+            <img src="../../img/galerias/four/photo (5).webp" alt="" />
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="prev-btn" onclick="prevSlide(), updateDisplay()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#373d3f"
+            >
+              <path
+                d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"
+              />
+            </svg>
+          </button>
+
+          <h2 class="subtitle-text counter-display"></h2>
+
+          <button class="next-btn" onclick="nextSlide(), updateDisplay()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#373d3f"
+            >
+              <path
+                d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>&copy; silent lung, 2024</footer>
+</html>
