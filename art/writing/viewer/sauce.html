@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="../../../styles/mq/mqs-style.css" />
     <script src="../../../js/sidebar.js" defer></script>
+    <script src="/js/footer.js" defer></script>
     <title>silent lung</title>
   </head>
 
@@ -54,7 +55,7 @@
             </a>
           </li>
           <li>
-            <a href="../../../index">Inicio</a>
+            <a href="../../../home/main">Inicio</a>
           </li>
           <li>
             <a href="../../../photo/galerias">Fotos</a>
@@ -67,15 +68,9 @@
           <li>
             <a href="../../../video/selector">Videos</a>
           </li>
-          <li>
-            <a href="../../../store/available">Tienda</a>
-          </li>
-          <li>
-            <a href="../../../contact/form">Contacto</a>
-          </li>
         </ul>
         <ul class="navbar subtitle-text">
-          <li><a href="../../../index">Inicio</a></li>
+          <li><a href="../../../home/main">Inicio</a></li>
           <li>
             <a href="../../../photo/galerias">Fotos</a>
           </li>
@@ -87,18 +82,12 @@
           <li>
             <a href="../../../video/selector">Videos</a>
           </li>
-          <li>
-            <a href="../../../store/available">Tienda</a>
-          </li>
-          <li>
-            <a href="../../../contact/form">Contacto</a>
-          </li>
         </ul>
       </nav>
     </header>
     <main>
       <div class="media-container light-1">
-        <button onclick="location.href='../selector';" class="close">
+        <button onclick="location.href = '../selector'" class="close">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -208,6 +197,6 @@
         </div>
       </div>
     </main>
-    <footer>&copy; silent lung, 2024</footer>
+    <footer id="footer"></footer>
   </body>
 </html>

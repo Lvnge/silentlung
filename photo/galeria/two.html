@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,6 +19,7 @@
 
     <script src="../../js/sidebar.js" defer></script>
     <script src="../../js/galeria.js" defer></script>
+    <script src="/js/footer.js" defer></script>
     <title>silent lung</title>
   </head>
 
@@ -56,7 +57,7 @@
             </a>
           </li>
           <li>
-            <a href="../../index">Inicio</a>
+            <a href="../../home/main">Inicio</a>
           </li>
           <li>
             <a id="active" href="../../photo/galerias">Fotos</a>
@@ -67,15 +68,9 @@
           <li>
             <a href="../../video/selector">Videos</a>
           </li>
-          <li>
-            <a href="../../store/available">Tienda</a>
-          </li>
-          <li>
-            <a href="../../contact/form">Contacto</a>
-          </li>
         </ul>
         <ul class="navbar subtitle-text">
-          <li><a href="../../index">Inicio</a></li>
+          <li><a href="../../home/main">Inicio</a></li>
           <li>
             <a class="active" href="../../photo/galerias">Fotos</a>
           </li>
@@ -84,12 +79,6 @@
           <li><a href="../../art/selector">Arte</a></li>
           <li>
             <a href="../../video/selector">Videos</a>
-          </li>
-          <li>
-            <a href="../../store/available">Tienda</a>
-          </li>
-          <li>
-            <a href="../../contact/form">Contacto</a>
           </li>
         </ul>
       </nav>
@@ -109,7 +98,7 @@
           </div>
         </div>
         <div class="buttons">
-          <button class="prev-btn" onclick="prevSlide(), updateDisplay()">
+          <button class="prev-btn" onclick="(prevSlide(), updateDisplay())">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -125,7 +114,7 @@
 
           <h2 class="subtitle-text counter-display"></h2>
 
-          <button class="next-btn" onclick="nextSlide(), updateDisplay()">
+          <button class="next-btn" onclick="(nextSlide(), updateDisplay())">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -142,5 +131,5 @@
       </div>
     </div>
   </body>
-  <footer>&copy; silent lung, 2024</footer>
+  <footer id="footer"></footer>
 </html>
